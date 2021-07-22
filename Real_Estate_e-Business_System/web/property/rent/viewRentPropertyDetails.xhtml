@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:cpPro="http://xmlns.jcp.org/jsf/composite/compositeComponent"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:body>
+        <ui:composition template="/layouts/layoutPage.xhtml">
+            <ui:define name="titleaPage">View Rent Property Details</ui:define>
+            <ui:define name="navigate">
+                Rent Property Details
+            </ui:define>
+            <ui:define name="content"> 
+
+                <h:outputText style="#{SessionController.showMSG ? 'display: block;' : 'display: none'}"  id="result" value="#{SessionController.message}"
+                              styleClass="#{SessionController.succsessfully ? 'MSG_Contener cussess_color':'MSG_Contener errorMSG_Color'}"/>
+
+                <h:panelGroup layout="block" styleClass="q-row">
+                    <h:panelGroup layout="block" style="display: block" styleClass="w50">
+                        <h:outputLabel value="Rent Property ID"/>
+                        <h:outputText id="txtRentID" styleClass="textBox disable" 
+                                      value="#{SessionController.currentRent.id}"
+                                      />
+                    </h:panelGroup>
+
+                    <h:panelGroup layout="block" style="display: block" styleClass="w50 rightPr">
+                        <h:outputLabel value="Weekly Rent (AUD)"/>
+                        <h:outputText id="txtRentPrice" styleClass="textBox disable" 
+                                      value="#{SessionController.currentRent.weeklyRent}"
+                                      />
+                    </h:panelGroup>
+                </h:panelGroup>
+
+                <h:panelGroup id="providedList" layout="block" style="  #{SessionController.seeMore ? 'display: block;':' display: none;'}}">
+                    <h:panelGroup layout="block" styleClass="q-row">
+                        <h:panelGroup layout="block" style="display: block" styleClass="w50">                        
+                            <h:outputLabel value="Provided Beds: #{SessionController.currentRent.providedBed ? 'Yes':'No'}" /> 
+                        </h:panelGroup>
+
+                        <h:panelGroup layout="block" style="display: block" styleClass="w50 rightPr">                       
+                            <h:outputLabel value="Provided Washing Machine: #{SessionController.currentRent.providedWashingMachine? 'Yes':'No'}" /> 
+                        </h:panelGroup>
+                    </h:panelGroup>
+
+
+                    <h:panelGroup layout="block" styleClass="q-row">
+                        <h:panelGroup layout="block" style="display: block" styleClass="w50">
+                            <h:outputLabel value="Provided Dishwasher: #{SessionController.currentRent.providedDishWasher? 'Yes':'No'}" />
+                        </h:panelGroup>
+
+                        <h:panelGroup layout="block" style="display: block" styleClass="w50 rightPr">
+                            <h:outputLabel value="Provided Air Conditioner: #{SessionController.currentRent.providedAirConditioner? 'Yes':'No'}" />
+                        </h:panelGroup>
+                    </h:panelGroup>
+
+                    <h:panelGroup layout="block" styleClass="q-row" style="padding-bottom: 15px;">
+                        <h:outputLabel value="Provided Clothes Dryer: #{SessionController.currentRent.providedClothesDryer? 'Yes':'No'}" />
+
+                    </h:panelGroup>
+
+                </h:panelGroup>
+
+                <h:panelGroup layout="block" id="blockDetails">
+                    <cpPro:compositeViewProperty  property="#{SessionController.currentRent}" show="#{SessionController.seeMore}"/>
+
+                </h:panelGroup>
+
+
+                <h:form>
+                    <h:commandButton id="btnSeeMore" 
+                                     styleClass= "actionButton" 
+                                     style="font-weight: bolder;" 
+                                     value="#{SessionController.seeMore ? 'View Less Details':'View More Details'}" >
+                        <f:ajax event="click" 
+                                execute="textInput" 
+                                listener="#{SessionController.setSeeMore(!SessionController.seeMore)}" 
+                                render="btnSeeMore providedList blockDetails"/>
+
+                    </h:commandButton>   
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

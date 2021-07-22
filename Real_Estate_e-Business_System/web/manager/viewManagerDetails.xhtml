@@ -1,0 +1,159 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+
+
+    <h:body>
+
+        <ui:composition template="/layouts/layoutPage.xhtml">
+            <ui:define name="titleaPage">View Property Manager Details</ui:define>
+            <ui:define name="navigate">
+                Property Manager Details
+            </ui:define>
+            <ui:define name="content">  
+
+                <h:outputText style="#{SessionController.showMSG ? 'display: block;' : 'display: none'}"  id="result" value="#{SessionController.message}"
+                              styleClass="#{SessionController.succsessfully ? 'MSG_Contener cussess_color':'MSG_Contener errorMSG_Color'}"/>
+
+
+
+
+
+
+                <h:panelGroup layout="block" styleClass="q-row" style="margin-bottom: 25px;">
+                    <h:panelGroup layout="block"  style="text-align: center;">
+                        <h:graphicImage  id="imgPhoto" styleClass="q-image" value="#{viewManagerDetailsRequest.loadPicture()}"  style="width: 150px; height: 150px;"/>
+                        <h:form id="formPicture" enctype="multipart/form-data" >
+                            <h:panelGroup layout="block" style="text-align: center;">
+                                <h:outputLabel for="inputPic" styleClass="actionButton" style="margin-right:  20px;" value="Upload photo"  />
+                                <h:inputFile style="display: none;" value="#{viewManagerDetailsRequest.picture}" id ="inputPic" p:accept="image/x-png,image/jpeg,All/*.*" >
+                                    <f:ajax listener="#{viewManagerDetailsRequest.uploadePic()}" render="result imgPhoto" />                        
+                                </h:inputFile>
+                            </h:panelGroup>
+                        </h:form>  
+                    </h:panelGroup>
+
+                    <h:panelGroup layout="block" styleClass="w70">
+                        <h:outputLabel value="Manager ID"/>
+                        <h:outputText styleClass="textBox disable" value="#{viewManagerDetailsRequest.manager.id}"/>    
+                        <h:outputLabel value="First Name"/>
+                        <h:outputText styleClass="textBox disable" value="#{viewManagerDetailsRequest.manager.firstName}"/>
+                        <h:outputLabel value="Last Name"/>
+                        <h:outputText styleClass="textBox disable" value="#{viewManagerDetailsRequest.manager.lastName}"/>              
+                    </h:panelGroup>
+                </h:panelGroup>
+
+
+                <h:outputLabel value="Address"/>
+                <h:outputText styleClass="textBox disable" value="#{viewManagerDetailsRequest.manager.address}"/>
+
+                <h:panelGroup layout="block" styleClass="q-row">
+                    <h:panelGroup layout="block" style="display: block" styleClass="w50">
+                        <h:outputLabel value="Email"/>
+                        <h:outputText styleClass="textBox disable" value="#{viewManagerDetailsRequest.manager.email}"/>
+                    </h:panelGroup>
+
+                    <h:panelGroup layout="block" style="display: block" styleClass="w50 rightPr">
+                        <h:outputLabel value="Gender"/>
+                        <h:outputText styleClass="textBox disable" value="#{viewManagerDetailsRequest.manager.gender == true ? 'Male' : 'Female'}"/>
+                    </h:panelGroup>
+                </h:panelGroup>
+
+                <h:panelGroup layout="block" styleClass="q-row">
+                    <h:panelGroup layout="block" style="display: block" styleClass="w50">
+                        <h:outputLabel value="Birthday"/>
+                        <h:outputText styleClass="textBox disable" value="#{viewManagerDetailsRequest.manager.birthday}">
+                            <f:convertDateTime pattern="dd/mm/yyyy"/>
+                        </h:outputText>
+                    </h:panelGroup>
+                    <h:panelGroup layout="block" style="display: block" styleClass="w50 rightPr">
+                        <h:outputLabel value="Age"/>
+                        <h:outputText styleClass="textBox disable" value="#{viewManagerDetailsRequest.manager.age} years old"/>
+                    </h:panelGroup>
+                </h:panelGroup>
+
+                <h:panelGroup layout="block" styleClass="q-row">
+                    <h:panelGroup layout="block" style="display: block" styleClass="w50">
+                        <h:outputLabel value="Phone Number"/>
+                        <h:outputText styleClass="textBox disable" value="#{viewManagerDetailsRequest.manager.phoneNumber}"/>
+                    </h:panelGroup>
+                    <h:panelGroup layout="block" style="display: block" styleClass="w50 rightPr">
+                        <h:outputLabel value="Hire Date"/>
+                        <h:outputText styleClass="textBox disable" value="#{viewManagerDetailsRequest.manager.hireDate}">
+                            <f:convertDateTime pattern="dd/mm/yyyy"/>
+                        </h:outputText>
+                    </h:panelGroup>
+                </h:panelGroup>
+
+
+                <br/><br/>
+                <h:panelGroup layout="block" >
+                    <h5 style="margin-bottom: 0px; margin-top: 20px;">
+                        <span style="color: white; border-radius: 5px; background: #28a745;padding: 5px;">
+                            Property Allocations (#{viewManagerDetailsRequest.listAllocatedProperty.size()})
+                        </span>
+                    </h5>
+                    <hr style="margin-top: 3px; background: #28a745; margin-bottom: 15px; padding: 2px "/>
+                </h:panelGroup>
+
+                <h:outputLabel 
+                    styleClass="linkButton linkButtonYallow" 
+                    style="#{viewManagerDetailsRequest.listAllocatedProperty.size() != 0 ? 'display: none;':'display: block;'} margin-bottom: 15px; text-decoration: none;;"
+                    value="#{viewManagerDetailsRequest.listAllocatedProperty.size() == 0 ? 'This manager has not allocated yet':''}"/>
+                
+                <h:panelGroup layout="block" style="#{viewManagerDetailsRequest.listAllocatedProperty.size() == 0 ? 'display: none;':'display: block;'}">
+
+                    <h:panelGroup layout="block" styleClass="scrallBarVertical">
+                        <h:form>
+                            <h:dataTable   styleClass="q-table " 
+                                           headerClass="q-column"  
+                                           rowClasses="odd, even"
+                                           value="#{viewManagerDetailsRequest.listAllocatedProperty}"
+                                           var="al">
+                                <h:column >
+                                    <f:facet  name="header">
+                                        <h:outputText  value="Aloocated ID"/>
+                                    </f:facet>
+                                    <h:outputText value="#{al.manager.id}-#{al.property.id}"/>
+                                </h:column>                           
+
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Property Details"/>
+                                    </f:facet>
+                                    <h:outputLabel 
+                                        for="btnViewProperty"
+                                        styleClass="linkButton linkButtonYallow"
+                                        value="#{al.property.address}"/>
+                                    <h:commandButton 
+                                        id="btnViewProperty" 
+                                        style="display: none"  
+                                        action="#{listAllAllocationRequest.viewPropertyDetails(al.property.id)}"/>
+                                </h:column>
+
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Allocated Time"/>
+                                    </f:facet>
+                                    <h:outputText value="#{al.allocatedDate}"/>
+                                </h:column> 
+
+
+                            </h:dataTable>
+                        </h:form>
+
+
+                    </h:panelGroup>
+                </h:panelGroup>
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

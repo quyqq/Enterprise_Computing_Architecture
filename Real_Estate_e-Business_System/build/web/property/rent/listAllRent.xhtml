@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:body>
+        <ui:composition template="/layouts/layoutPage.xhtml">
+            <ui:define name="titleaPage">List All Rent Properties</ui:define>
+            <ui:define name="navigate">
+                List Of All Rent Properties
+            </ui:define>
+            <ui:define name="content">                 
+
+
+                <h:form>
+                    <h:panelGroup layout="block" styleClass="scrallBarVertical">
+                        <h:dataTable  styleClass="q-table " 
+                                      headerClass="q-column"  
+                                      rowClasses="odd, even"
+                                      value="#{listAllRentProperyRequest.listOfRentProperty}"
+                                      var="forRent">
+                            <h:column >
+                                <f:facet  name="header">
+                                    <h:outputText  value="Property ID"/>
+                                </f:facet>
+                                <h:outputText value="#{forRent.id}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Type Property"/>
+                                </f:facet>
+                                <h:outputText value="#{forRent.propertyType}"/>
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Rent Price"/>
+                                </f:facet>
+                                <h:outputText value="$#{forRent.weeklyRent}"/>
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Address"/>
+                                </f:facet>
+                                <h:outputText value="#{forRent.address}"/>
+                            </h:column>
+
+
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Actions"/>
+                                </f:facet>
+                                <h:outputLabel for="btnView" style="margin: 0;" styleClass="actionButton" value="View"/>
+                                <h:commandButton id="btnView" style="display: none"  action="#{listAllRentProperyRequest.viewRentPropertyDetail(forRent)}"/>
+                            </h:column>
+
+                        </h:dataTable>
+                    </h:panelGroup>
+                </h:form>
+
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

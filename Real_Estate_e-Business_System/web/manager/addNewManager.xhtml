@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:body>
+        <ui:composition template="/layouts/layoutPage.xhtml">
+            <ui:define name="titleaPage">Add New Property Manager</ui:define>
+            <ui:define name="navigate">
+                New Property Manager
+            </ui:define>
+            <ui:define name="content">                 
+
+
+
+                <h:form>
+
+                    <h:panelGroup layout="block" styleClass="q-row">
+                        <h:panelGroup layout="block" style="display: block" styleClass="w50">
+                            <h:outputLabel value="First Name" />
+                            <h:message for="textFirstName" styleClass="MSG_Contener errorMSG_Color"/>
+                            <h:inputText id ="textFirstName" value="#{addNewManagerRequest.manager.firstName}"  p:placeholder="First Name" styleClass="textBox" required="true" requiredMessage="Pelase enter first name"/> 
+                        </h:panelGroup>
+                        <h:panelGroup layout="block" style="display: block" styleClass="w50 rightPr">
+                            <h:outputLabel value="Last Name" />
+                            <h:message for="textLastName" styleClass="MSG_Contener errorMSG_Color"/>
+                            <h:inputText id="textLastName" value="#{addNewManagerRequest.manager.lastName}"  styleClass="textBox" p:placeholder="Last Name" required="true" requiredMessage="Please enter last name"/>
+                        </h:panelGroup>
+                    </h:panelGroup>
+
+
+                    <h:outputLabel value="Address" />
+                    <h:message for="textAddress" styleClass="MSG_Contener errorMSG_Color"/>
+                    <h:inputText id="textAddress" value="#{addNewManagerRequest.manager.address}" p:placeholder="Address" styleClass=" textBox" required="true" requiredMessage="Please enter Address"/>
+
+
+                    <h:panelGroup layout="block" styleClass="q-row">
+                        <h:panelGroup layout="block" style="display: block" styleClass="w50">
+                            <h:outputLabel value="Email" />
+                            <h:message for="txtEmail" styleClass="MSG_Contener errorMSG_Color"/>
+                            <h:inputText    value="#{addNewManagerRequest.manager.email}"  
+                                            p:placeholder="name@example.com" 
+                                            styleClass="textBox" 
+                                            required="false"
+                                            id="txtEmail"
+                                            validatorMessage="Entered email address is not correct format">
+                                <f:validateRegex pattern="(^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$)?"/>
+                            </h:inputText>        
+                        </h:panelGroup>
+                        <h:panelGroup layout="block" style="display: block" styleClass="w50 rightPr">
+                            <h:outputLabel value="Phone Number" />
+                            <h:message for="textPhoneNumber" styleClass="MSG_Contener errorMSG_Color"/>
+                            <h:inputText id="textPhoneNumber" value="#{addNewManagerRequest.manager.phoneNumber}" p:placeholder="Phone number 1-(555)-555-5555" styleClass="textBox" p:type="tel" required="true" requiredMessage="Please enter phone number" />
+                        </h:panelGroup>
+                    </h:panelGroup>
+
+
+
+                    <h:panelGroup layout="block" styleClass="q-row">
+                        <h:panelGroup layout="block" style="display: block" styleClass="w50">
+                            <h:outputLabel value="Birthday" />
+                            <h:message for="dateBirthday" styleClass="MSG_Contener errorMSG_Color"/>
+                            <h:inputText id="dateBirthday" 
+                                         value="#{addNewManagerRequest.manager.birthday}" 
+                                         p:placeHolder="example: (22/12/2012)"  styleClass="textBox"   
+                                         required="true" requiredMessage="Please enter birthday"
+                                         converterMessage="Please enter correct format dd/mm/yyyy">
+                                <f:convertDateTime pattern="dd/mm/yyyy"/>
+                            </h:inputText>  
+                        </h:panelGroup>
+                        <h:panelGroup layout="block" style="display: block" styleClass="w50 rightPr">
+                            <h:outputLabel value="Hire Date" />
+                            <h:message for="dateHireDate" styleClass="MSG_Contener errorMSG_Color"/>
+                            <h:inputText  id="dateHireDate" 
+                                          value="#{addNewManagerRequest.manager.hireDate}" 
+                                          p:placeHolder="example: (22/12/2012)" 
+                                          styleClass="textBox"  required="true" 
+                                          requiredMessage="Please enter hired date"
+                                          converterMessage="Please enter correct format dd/mm/yyyy">
+                                <f:convertDateTime pattern="dd/mm/yyyy"/>
+                            </h:inputText>
+                        </h:panelGroup>
+                    </h:panelGroup>
+
+
+                    <h:outputLabel value="Gender"  />
+                    <h:message for="radioGender" styleClass="MSG_Contener errorMSG_Color"/>
+                    <h:selectOneRadio id="radioGender" value="#{addNewManagerRequest.manager.gender}" style="margin-top: 12px; margin-bottom:  12px;" required="true" requiredMessage="Please select gender">
+                        <f:selectItem  itemValue="true" itemLabel="Male" />
+                        <f:selectItem  itemValue="false" itemLabel=" Female" />
+                    </h:selectOneRadio>
+
+
+
+
+                    <h:panelGroup layout="block" styleClass="center" style="margin-top: 25px" >
+                        <h:commandButton action="#{addNewManagerRequest.insertNewManager()}"  styleClass="actionButton " style="width: 50%"  value="Add New Property Manager"/>    
+                    </h:panelGroup>
+
+                </h:form>        
+            </ui:define>
+
+        </ui:composition>
+    </h:body>
+</html>
+

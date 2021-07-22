@@ -1,0 +1,183 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"      
+      xmlns:cp="http://xmlns.jcp.org/jsf/composite"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <cp:interface>
+        <cp:attribute name="property" required="true"/>
+    </cp:interface>
+
+    <cp:implementation>        
+
+
+        <h:panelGroup layout="block" style="display: block; width: 47%"  >
+            <h:outputLabel value="Property Type" for="textProType"/>
+            <h:message for="textProType" styleClass="MSG_Contener errorMSG_Color"/>
+            <h:inputText styleClass="textBox" 
+                         id="textProType" 
+                         p:placeHolder="Property Type" 
+                         required="true" 
+                         requiredMessage="Pelase enter type of property" 
+                         value="#{cc.attrs.property.propertyType}"
+                         />
+        </h:panelGroup>
+
+
+        <h:outputLabel value="Address" for="textAddress"/>
+        <h:message for="textAddress" styleClass="MSG_Contener errorMSG_Color"/>            
+        <h:inputText styleClass="textBox" 
+                     id="textAddress" 
+                     p:placeHolder="Enter address" 
+                     required="true" 
+                     requiredMessage="Please enter address"
+                     value="#{cc.attrs.property.address}"
+                     />           
+
+
+        <h:panelGroup layout="block" styleClass="q-row">
+            <h:panelGroup layout="block" style="display: block" styleClass="w50">
+                <h:outputLabel value="Lot Size" for="textLotSize"/>
+                <h:message for="textLotSize" styleClass="MSG_Contener errorMSG_Color"/>
+
+                <h:inputText styleClass="textBox" 
+                             id="textLotSize" 
+                             required="true" 
+                             p:placeHolder="Lot Size" 
+                             validatorMessage="Entered value is incorrect format, must be a number higher or equal than 0"  
+                             requiredMessage="Please enter lot size (quare unit)"
+                             value="#{cc.attrs.property.lotSize}"
+                             converterMessage="Please enter digits only."
+                             >
+                    <f:validateDoubleRange minimum="0.00"/>
+                </h:inputText>
+            </h:panelGroup>
+
+            <h:panelGroup layout="block" style="display: block" styleClass="w50 rightPr">
+                <h:outputLabel value="Square Feet"/>
+                <h:message for="txtSqureFeet" styleClass="MSG_Contener errorMSG_Color"/>
+                <h:inputText styleClass="textBox" 
+                             id="txtSqureFeet" 
+                             validatorMessage="Entered value is incorrect format, must be a number higher or equal than 0"   
+                             p:placeHolder="Square Feet" 
+                             required="true"   
+                             requiredMessage="Pelase enter square feet"
+                             value="#{cc.attrs.property.squareFeet}"
+                             converterMessage="Please enter digits only."
+                             >
+                    <f:validateDoubleRange minimum="0.00"/>
+                </h:inputText>
+            </h:panelGroup>
+        </h:panelGroup>
+
+        <h:panelGroup layout="block" styleClass="q-row">
+            <h:panelGroup layout="block" style="display: block" styleClass="w50">
+                <h:outputLabel value="Number of floor"/>
+                <h:message for="txtlevelOfProperty" styleClass="MSG_Contener errorMSG_Color"/>
+                <h:inputText id="txtlevelOfProperty"  
+                             validatorMessage="Entered value is incorrect format, must be a number higher or equal than 0"   
+                             styleClass="textBox" 
+                             p:placeHolder="Number of floor"  
+                             required="true"  
+                             requiredMessage="Pelase enter level"
+                             value="#{cc.attrs.property.levels}"
+                             converterMessage="Please enter digits only."
+                             >
+                    <f:validateLongRange minimum="0"/>
+                </h:inputText>
+            </h:panelGroup>
+
+            <h:panelGroup layout="block" style="display: block" styleClass="w50 rightPr">
+                <h:outputLabel value="Number of Bathroom"/>
+                <h:message for="txtNumberOfBathRoom" styleClass="MSG_Contener errorMSG_Color"/>
+                <h:inputText id="txtNumberOfBathRoom"  
+                             required="true"  
+                             validatorMessage="Entered value is incorrect format, must be a number higher or equal than 0"   
+                             requiredMessage="Please enter number of bathroom" 
+                             styleClass="textBox" 
+                             p:placeHolder="Number of Bathroom" 
+                             value="#{cc.attrs.property.numberBathroom}"
+                             converterMessage="Please enter digits only."
+                             >
+                    <f:validateLongRange minimum="0"/>
+                </h:inputText>
+            </h:panelGroup>
+        </h:panelGroup>
+
+        <h:panelGroup layout="block" styleClass="q-row">
+            <h:panelGroup layout="block" style="display: block" styleClass="w50">
+                <h:outputLabel value="Number of Bedroom"/>
+                <h:message for="txtNumberOfBedroom" styleClass="MSG_Contener errorMSG_Color"/>
+                <h:inputText id="txtNumberOfBedroom" 
+                             required="true"  
+                             validatorMessage="Entered value is incorrect format, must be a number higher or equal than 0"   
+                             requiredMessage="Please enter number of bedroom" 
+                             styleClass="textBox" 
+                             p:placeHolder="Number of Bedroom"  
+                             value="#{cc.attrs.property.numberBedroom}"
+                             converterMessage="Please enter digits only."
+                             >
+                    <f:validateLongRange minimum="0"/>
+                </h:inputText>
+            </h:panelGroup>
+
+            <h:panelGroup layout="block" style="display: block" styleClass="w50 rightPr">
+                <h:outputLabel value="Number of Toilet"/>
+                <h:message for="txtNumberOfToilet" styleClass="MSG_Contener errorMSG_Color"/>
+                <h:inputText id="txtNumberOfToilet" 
+                             required="true" 
+                             validatorMessage="Entered value is incorrect format, must be a number higher or equal than 0"   
+                             requiredMessage="Please enter number of toilet" 
+                             styleClass="textBox" 
+                             p:placeHolder="Number of Toilet"  
+                             value="#{cc.attrs.property.numberToilet}"
+                             converterMessage="Please enter digits only."
+                             >
+                    <f:validateLongRange minimum="0"/>
+                </h:inputText>
+            </h:panelGroup>
+        </h:panelGroup>
+
+        <h:panelGroup layout="block" styleClass="q-row">
+            <h:panelGroup layout="block" style="display: block" styleClass="w50">
+                <h:outputLabel value="Number of Garage"/>
+                <h:message for="txtNumberOfGarage" styleClass="MSG_Contener errorMSG_Color"/>
+                <h:inputText id="txtNumberOfGarage" required="true"  
+                             validatorMessage="Entered value is incorrect format, must be a number higher or equal than 0"   
+                             requiredMessage="Pelase enter number of garage" 
+                             styleClass="textBox" 
+                             p:placeHolder="Number of Garage" 
+                             value="#{cc.attrs.property.numberGarage}"
+                             converterMessage="Please enter digits only."
+                             >
+                    <f:validateLongRange minimum="0"/>
+                </h:inputText>
+            </h:panelGroup>
+
+            <h:panelGroup layout="block" style="display: block" styleClass="w50 rightPr">
+                <h:outputLabel value="Built Year"/>
+                <h:message for="txtYearBult" styleClass="MSG_Contener errorMSG_Color"/>
+                <h:inputText styleClass="textBox"
+                             id="txtYearBult"
+                             validatorMessage="Entered value is incorrect format, must be a number higher, equal zero or null "   
+                             p:placeHolder="Built Year" 
+                             value="#{cc.attrs.property.yearBuilt}"
+                             maxlength="5"
+                             converterMessage="Please enter digits only."
+                             >
+                    <f:validateLongRange minimum="0"/>
+                    
+                </h:inputText>
+            </h:panelGroup>
+        </h:panelGroup>
+
+        <h:outputLabel value="Description"/>
+        <h:inputTextarea styleClass="textBox q-textArea" 
+                         p:placeHolder="Enter description"
+                         value="#{cc.attrs.property.description}"
+                         />
+    </cp:implementation>
+</html>
+

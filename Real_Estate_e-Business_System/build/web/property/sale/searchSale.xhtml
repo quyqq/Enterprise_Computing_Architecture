@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:body>
+        <ui:composition template="/layouts/layoutPage.xhtml">
+            <ui:define name="titleaPage">Find Sale Property</ui:define>
+            <ui:define name="navigate">
+                Search Sale Property
+            </ui:define>
+            <ui:define name="content">                 
+
+
+                <h:form style="margin-bottom:25px; margin-top: 25px;" styleClass="w-100">
+                    <h:panelGroup layout="block" styleClass="q-row">
+                        <h:panelGroup layout="block" style="display: block" styleClass="w70">                            
+                            <h:inputText id="txtKeyword" 
+                                         p:placeholder="Enter Sale Property ID..."
+                                         styleClass="textBox"
+                                         value="#{searchSalePropertyRequest.keyWord}"
+                                         required="true"
+                                         converterMessage="Enter digits only"
+                                         requiredMessage="Please enter ID of sale property"
+                                         validatorMessage="Number must be higher or equal 1"
+                                         >
+                                <f:validateLongRange minimum="1"/>
+                            </h:inputText>
+                        </h:panelGroup>
+                        <h:panelGroup layout="block" style="display: block" styleClass="w10 rightPr">
+                            <h:commandButton styleClass= "searchButton" style="font-weight: bolder;" value="Search">
+                                <f:ajax event="click" execute="txtKeyword" 
+                                        listener="#{searchSalePropertyRequest.acctionLoadFindSaleProperty()}" 
+                                        render=":form:tableResult msg "/>
+                            </h:commandButton>
+                        </h:panelGroup>
+                    </h:panelGroup>  
+                </h:form >          
+
+                <h:panelGroup layout="block" id="msg">
+                    <h:message for="txtKeyword" styleClass="MSG_Contener errorMSG_Color"/>
+                    <h:outputText style="#{SessionController.showMSG ? 'display: block;' : 'display: none;'} "  value="#{SessionController.message}"
+                                  styleClass="#{ SessionController.succsessfully ? 'MSG_Contener cussess_color':'MSG_Contener errorMSG_Color'}"/>
+                </h:panelGroup>
+
+                <h:form id="form">
+                    <h:panelGroup layout="block" id="tableResult" styleClass="scrallBarVertical">
+                        <h:dataTable  styleClass="q-table " 
+                                      headerClass="q-column"  
+                                      rowClasses="odd, even"
+                                      value="#{SessionController.searchResultListSaleProperty}"
+                                      var="forSale">
+                            <h:column >
+                                <f:facet  name="header">
+                                    <h:outputText  value="Property ID"/>
+                                </f:facet>
+                                <h:outputText value="#{forSale.id}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Type Property"/>
+                                </f:facet>
+                                <h:outputText value="#{forSale.propertyType}"/>
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Sale Price"/>
+                                </f:facet>
+                                <h:outputText value="$#{forSale.salePrice}"/>
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Address"/>
+                                </f:facet>
+                                <h:outputText value="#{forSale.address}"/>
+                            </h:column>
+
+
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Actions"/>
+                                </f:facet>
+                                <h:outputLabel for="btnView" style="margin: 0;" styleClass="actionButton" value="View"/>
+                                <h:commandButton id="btnView" style="display: none"  action="#{listAllSalePropertyRequest.viewSalePropertyDetail(forSale)}"/>
+                            </h:column>
+
+                        </h:dataTable>
+                    </h:panelGroup>
+                </h:form>
+
+
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

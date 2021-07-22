@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <h:head>        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <h:outputStylesheet library="css" name="default.css" />
+        <title>
+            <ui:insert name="titleaPage">Real Estate E-Business System</ui:insert>
+        </title>        
+    </h:head>
+    <h:body>
+        <h:panelGroup layout="block" id ="pageID" styleClass="q-container" style="border: 1px solid #004085; padding: 0px">
+            <h:panelGroup layout="block" id="headerID" styleClass="q-row ">
+                <h:panelGroup layout="block" styleClass="w100"> 
+                    <ui:insert name="header">
+                        <ui:include src="headerPage.xhtml"/>
+                    </ui:insert>
+                </h:panelGroup>                
+            </h:panelGroup>  
+
+            <h:panelGroup layout="block" id="contentID" styleClass="q-row" >
+                <h:panelGroup layout="block" styleClass="w30" style="padding-right: 0; border-right: 1px solid #0056b3;">
+                    <ui:insert name="menu" >
+                        <ui:include src="menuPage.xhtml"/>
+                    </ui:insert>
+                </h:panelGroup>
+                <h:panelGroup layout="block" styleClass="w70 mainContent">
+                    <h:panelGroup layout="block" >
+                        <h5 style="margin-bottom: 0px; margin-top: 20px;">
+                            <span style="color: white; border-radius: 5px; background: #17a2b8;padding: 5px;">
+                                <ui:insert name="navigate"/>
+                            </span>
+                        </h5>
+                        <hr style="margin-top: 3px; background: #17a2b8; margin-bottom: 15px; padding: 2px "/>
+                    </h:panelGroup>
+                    <h:panelGroup layout="block" >
+                        <ui:insert name="content"/>
+                    </h:panelGroup>
+                </h:panelGroup>
+
+            </h:panelGroup>
+
+            <h:panelGroup layout="block" id="footerID" styleClass="q-row">
+                <h:panelGroup layout="block" styleClass="w100">
+                    <ui:insert name="footer">
+                        <ui:include src="footerPage.xhtml"/>
+                    </ui:insert>
+                </h:panelGroup>
+            </h:panelGroup>
+        </h:panelGroup>
+       
+    </h:body>
+</html>
+

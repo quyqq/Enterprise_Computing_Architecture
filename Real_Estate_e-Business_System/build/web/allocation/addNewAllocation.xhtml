@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      >
+
+    <h:body>
+        <ui:composition template="/layouts/layoutPage.xhtml">
+            <ui:define name="titleaPage">Add New Allocation</ui:define>
+            <ui:define name="navigate">
+                New Allocation
+            </ui:define>
+            <ui:define name="content"> 
+                <h:panelGroup layout="block" id="msg" >
+                    <h:outputText style="#{SessionController.showMSG ? 'display: block;' : 'display: none;'} "  value="#{SessionController.message}"
+                                  styleClass="#{ SessionController.succsessfully ? 'MSG_Contener cussess_color':'MSG_Contener errorMSG_Color'}"/>
+                </h:panelGroup>
+
+                <h:form>
+
+                    <h:panelGroup layout="block" styleClass="q-row" >
+                        <h:panelGroup layout="block" styleClass="w70" style="display: block">
+                            <h:outputLabel value="Manager" /> 
+                            <h:message for="comboboxManger" styleClass="MSG_Contener errorMSG_Color"/>
+                            <h:selectOneMenu 
+                                id="comboboxManger"
+                                value="#{addNewAllocationRequest.selectedMangerID}"
+                                styleClass="_commobox"
+                                hideNoSelectionOption="true"                                
+                                
+                                >
+                                <f:selectItem itemValue="#{-1}" itemLabel="--select--" noSelectionOption="true" />
+                                <f:selectItems value="#{addNewAllocationRequest.managers}"
+                                               var="mng"
+                                               itemLabel="#{mng.firstName} #{mng.lastName}"
+                                               itemValue="#{mng.id}"/>   
+                            </h:selectOneMenu>
+                        </h:panelGroup>
+
+                       
+                    </h:panelGroup>                        
+
+
+
+                    <h:panelGroup layout="block" styleClass="q-row">
+                        <h:panelGroup layout="block" styleClass="w70" >
+                            <h:outputLabel value="Sale Property" />
+                            <h:message for="comboboxSaleProperty" styleClass="MSG_Contener errorMSG_Color"/>
+                            <h:selectOneMenu 
+                                id="comboboxSaleProperty" 
+                                styleClass="_commobox" 
+                                value="#{addNewAllocationRequest.selectedSaleID}"
+                                hideNoSelectionOption="true"                                
+                                >
+                                <f:selectItem itemValue="#{-1}" itemLabel="--select--" noSelectionOption="true" />
+                                <f:selectItems 
+                                    value="#{addNewAllocationRequest.forSales}"
+                                    var="fs"
+                                    itemValue="#{fs.id}" 
+                                    itemLabel="#{fs.address}" />      
+                               
+                            </h:selectOneMenu>
+                        </h:panelGroup>
+                        <h:panelGroup layout="block" class=" w20 ">
+                            <h:commandButton 
+                                styleClass="actionButton" 
+                                style="margin-top: 25px" 
+                                value="Allocate" 
+                                action="#{addNewAllocationRequest.allocateSaleProperty()}"/>                                
+                            
+                        </h:panelGroup>
+
+                    </h:panelGroup>
+
+                    <h:panelGroup layout="block" styleClass="q-row">
+                        <h:panelGroup layout="block" styleClass="w70" >
+                            <h:outputLabel value="Rent Property" />
+                            <h:message for="coboboxRentProperty" styleClass="MSG_Contener errorMSG_Color"/>
+                            <h:selectOneMenu  
+                                id="coboboxRentProperty"
+                                styleClass="_commobox" 
+                                value="#{addNewAllocationRequest.selectedRentID}"
+                                hideNoSelectionOption="true"                               
+                                >
+                                <f:selectItem itemValue="#{-1}" itemLabel="--select--" noSelectionOption="true" />
+                                <f:selectItems 
+                                    id="selectItems"
+                                    value="#{addNewAllocationRequest.forRents}"
+                                    var="fr"
+                                    itemValue="#{fr.id}" 
+                                    itemLabel="#{fr.address}" />   
+                            </h:selectOneMenu>
+                        </h:panelGroup>
+                        <h:panelGroup layout="block" class=" w20 ">
+                            <h:commandButton 
+                                styleClass="actionButton"
+                                style="margin-top: 25px" 
+                                value="Allocate"
+                                action="#{addNewAllocationRequest.allocateRentProperty()}"/>
+                        </h:panelGroup>
+
+                    </h:panelGroup>
+                </h:form>
+
+
+
+               
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

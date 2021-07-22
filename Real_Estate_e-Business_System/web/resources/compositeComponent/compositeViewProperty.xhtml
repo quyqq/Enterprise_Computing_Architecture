@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"      
+      xmlns:cp="http://xmlns.jcp.org/jsf/composite"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <cp:interface>
+        <cp:attribute name="property" required="true"/>
+        <cp:attribute name="show" required="true"/>
+    </cp:interface>
+
+    <cp:implementation>        
+
+
+        <h:panelGroup layout="block" style="display: block; width: 47%"  >
+            <h:outputLabel value="Property Type" for="textProType"/>
+            <h:outputText styleClass="textBox disable" 
+                          id="textProType" 
+                          value="#{cc.attrs.property.propertyType}"
+                          />
+        </h:panelGroup>
+
+
+        <h:outputLabel value="Address" for="textAddress"/>
+        <h:outputText styleClass="textBox disable" 
+                      id="textAddress" 
+                      value="#{cc.attrs.property.address}"
+                      />
+
+
+
+        <h:panelGroup layout="block" styleClass="q-row" style="#{cc.attrs.show ? 'display: flex;':'display: none;'}">
+            <h:panelGroup layout="block" style="display: block;" styleClass="w50">
+                <h:outputLabel value="Lot Size" for="textLotSize"/>
+                <h:outputText styleClass="textBox disable" 
+                              id="textLotSize" 
+                              value="#{cc.attrs.property.lotSize}"
+                              />
+            </h:panelGroup>
+
+            <h:panelGroup layout="block" style="display: block" styleClass="w50 rightPr">
+                <h:outputLabel value="Square Feet"/>
+
+                <h:outputText styleClass="textBox disable" 
+                              id="txtSqureFeet" 
+                              value="#{cc.attrs.property.squareFeet}"/>
+            </h:panelGroup>
+        </h:panelGroup>
+
+        <h:panelGroup layout="block" styleClass="q-row" style="#{cc.attrs.show ? 'display: flex;':'display: none;'}">
+            <h:panelGroup layout="block" style="display: block" styleClass="w50">
+                <h:outputLabel value="Number of floor"/>
+                <h:outputText id="txtlevelOfProperty"                              
+                              styleClass="textBox disable"                             
+                              value="#{cc.attrs.property.levels}"                             
+                              />
+            </h:panelGroup>
+
+            <h:panelGroup layout="block" style="display: block" styleClass="w50 rightPr">
+                <h:outputLabel value="Number of Bathroom"/>
+                <h:outputText id="txtNumberOfBathRoom"  
+                              styleClass="textBox disable" 
+                              value="#{cc.attrs.property.numberBathroom}"
+                              />
+            </h:panelGroup>
+        </h:panelGroup>
+
+        <h:panelGroup layout="block" styleClass="q-row" style="#{cc.attrs.show ? 'display: flex;':'display: none;'}">
+            <h:panelGroup layout="block" style="display: block" styleClass="w50">
+                <h:outputLabel value="Number of Bedroom"/>
+                <h:outputText id="txtNumberOfBedroom" 
+                              styleClass="textBox disable" 
+                              value="#{cc.attrs.property.numberBedroom}"
+                              />
+            </h:panelGroup>
+
+            <h:panelGroup layout="block" style="display: block" styleClass="w50 rightPr">
+                <h:outputLabel value="Number of Toilet"/>
+                <h:outputText id="txtNumberOfToilet" 
+                              styleClass="textBox disable" 
+                              value="#{cc.attrs.property.numberToilet}"
+                              />
+            </h:panelGroup>
+        </h:panelGroup>
+
+        <h:panelGroup layout="block" styleClass="q-row" style="#{cc.attrs.show ? 'display: flex;':'display: none;'}">
+            <h:panelGroup layout="block" style="display: block" styleClass="w50">
+                <h:outputLabel value="Number of Garage"/>
+                <h:outputText id="txtNumberOfGarage" 
+                              styleClass="textBox disable"
+                              value="#{cc.attrs.property.numberGarage}"
+                              />
+            </h:panelGroup>
+
+            <h:panelGroup layout="block" style="display: block" styleClass="w50 rightPr">
+                <h:outputLabel value="Built Year"/>
+                <h:outputText styleClass="textBox disable"
+                              id="txtYearBult"
+                              value="#{cc.attrs.property.yearBuilt}"
+                              />
+            </h:panelGroup>
+        </h:panelGroup>
+
+        <h:panelGroup layout="block" style="#{cc.attrs.show ? 'display: block;':'display: none;'}">
+            <h:outputLabel value="Description"/>
+            <h:outputText styleClass="textBox q-textArea disable" 
+                          value="#{cc.attrs.property.description}"
+                          />
+        </h:panelGroup>
+    </cp:implementation>
+</html>
+

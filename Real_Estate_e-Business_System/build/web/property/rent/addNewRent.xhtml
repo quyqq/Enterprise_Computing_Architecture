@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:cpPro="http://xmlns.jcp.org/jsf/composite/compositeComponent">
+
+    <h:body>
+        <ui:composition template="/layouts/layoutPage.xhtml">
+            <ui:define name="titleaPage">Add New Rent Property</ui:define>
+            <ui:define name="navigate">
+                New Rent Property
+            </ui:define>
+            <ui:define name="content">                
+
+
+
+                <h:form> 
+                    <h:outputLabel value="Weekly Rent (AUD)"/>
+                    <h:message for="txtRentPrice" styleClass="MSG_Contener errorMSG_Color"/>
+                    <h:inputText id="txtRentPrice" styleClass="textBox" 
+                                 p:placeHolder="Price" required="true" 
+                                 validatorMessage="Entered value is incorrect format, must be a number higher than 0" 
+                                 requiredMessage="Please enter weekly rent (AUD)"
+                                 value="#{addNewRentPropertyRequest.newRent.weeklyRent}"
+                                 converterMessage="Please enter digits only.">
+                        <f:validateDoubleRange minimum="0.00" />
+                    </h:inputText>
+
+
+                    <h:panelGroup layout="block" styleClass="q-row">
+                        <h:panelGroup layout="block" style="display: block" styleClass="w50">
+                            <h:selectBooleanCheckbox 
+                                value="#{addNewRentPropertyRequest.newRent.providedBed}" 
+                                styleClass="q-checkBox" 
+                                id="CheckBoxProBed"/>
+                            <h:outputLabel value="Provided Beds" for="CheckBoxProBed"/> 
+                        </h:panelGroup>
+
+                        <h:panelGroup layout="block" style="display: block" styleClass="w50 rightPr">
+                            <h:selectBooleanCheckbox 
+                                value="#{addNewRentPropertyRequest.newRent.providedWashingMachine}" 
+                                styleClass="q-checkBox" 
+                                id="CheckBoxWsh"/>  
+                            <h:outputLabel value="Provided Washing Machine" for="CheckBoxWsh"/> 
+                        </h:panelGroup>
+                    </h:panelGroup>
+
+
+                    <h:panelGroup layout="block" styleClass="q-row">
+                        <h:panelGroup layout="block" style="display: block" styleClass="w50">
+                            <h:selectBooleanCheckbox 
+                                value="#{addNewRentPropertyRequest.newRent.providedDishWasher}" 
+                                styleClass="q-checkBox" 
+                                id="CheckBoxDsh"/> 
+                            <h:outputLabel value="Provided Dishwasher" for="CheckBoxDsh"/>
+                        </h:panelGroup>
+
+                        <h:panelGroup layout="block" style="display: block" styleClass="w50 rightPr">
+                            <h:selectBooleanCheckbox 
+                                value="#{addNewRentPropertyRequest.newRent.providedAirConditioner}" 
+                                styleClass="q-checkBox" 
+                                id="CheckBoxAC"/> 
+                            <h:outputLabel value="Provided Air Conditioner" for="CheckBoxAC"/>
+                        </h:panelGroup>
+                    </h:panelGroup>
+
+                    <h:panelGroup layout="block" styleClass="q-row">
+                        <h:selectBooleanCheckbox 
+                            value="#{addNewRentPropertyRequest.newRent.providedClothesDryer}" 
+                            styleClass="q-checkBox" 
+                            id="CheckBoxCD"/>                        
+                        <h:outputLabel value="Provided Clothes Dryer" for="CheckBoxCD"/>
+
+                    </h:panelGroup>
+
+
+                    <cpPro:compositeProperty property="#{addNewRentPropertyRequest.newRent}"/>
+
+
+                    <h:panelGroup layout="block" styleClass="center" style="margin-top: 25px" >
+                        <h:commandButton  styleClass="actionButton " style="width: 50%"  value="Add a New Rent Property" action="#{addNewRentPropertyRequest.insertNewRentProperty()}"/>    
+                    </h:panelGroup>
+
+                </h:form>                   
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

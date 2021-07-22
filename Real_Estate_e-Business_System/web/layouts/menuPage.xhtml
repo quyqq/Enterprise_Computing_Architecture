@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+
+
+    <ui:composition>
+
+        <h:form>
+            <h:panelGroup layout="block" >
+
+                <h:button styleClass="w100 q-homeButton" value="Home" outcome="/index.fx"/>               
+
+
+                <button class="w100 menu-button" > 
+                    <h5>Rent Property</h5>
+                </button>
+
+
+                <h:panelGroup layout="block" styleClass=" gropOfNavigate w100">
+                    <h:commandButton styleClass="btn w100" value="Add Rent Property" action="#{addNewRentPropertyRequest.openAddNewRent()}" />                      
+                    <h:commandButton styleClass="btn w100" value="List All Rent Property" action="#{listAllRentProperyRequest.openListAllRent()}"/>                    
+                    <h:commandButton styleClass="btn w100" value="Search Rent Property" action="#{searchRentPropertyRequest.openSearchRent()}"/>
+                </h:panelGroup>
+
+                <button class="w100 menu-button" > 
+                    <h5>Sale Property</h5>
+                </button>
+
+                <h:panelGroup layout="block" styleClass=" gropOfNavigate w100">
+                    <h:commandButton styleClass="btn w100" value="Add Sale Property" action="#{addNewSalePropertyRequest.openAddNewSaleProperty()}"/>
+                    <h:commandButton styleClass="btn w100" value="List All Sale Property" action="#{listAllSalePropertyRequest.openListSaleProperty()}"/>
+                    <h:commandButton styleClass="btn w100" value="Search Sale Property" action="#{searchSalePropertyRequest.openSearchSaleProperty()}"/>
+                </h:panelGroup>
+
+
+
+                <button class="w100 menu-button" > 
+                    <h5>Property Manager</h5>
+                </button>
+
+
+                <h:panelGroup layout="block" styleClass=" gropOfNavigate w100">
+                    <h:commandButton styleClass="btn w100 " value="Add Property Manager" action="#{addNewManagerRequest.openAddNewManagerPage()}"/>
+                    <h:commandButton styleClass="btn w100 " value="List All Property Managers" action="#{listAllManagersRequest.openListAllMaagers()}"/>             
+                    <h:commandButton styleClass="btn w100 " value="Search Property Manager" action="#{searchManagerRequest.openSearchManager()}"/>
+                </h:panelGroup>
+
+
+                <button class="w100 menu-button"> 
+                    <h5>Allocations Management</h5>
+                </button>
+
+                <h:panelGroup layout="block" styleClass=" gropOfNavigate w100">
+                    <h:commandButton styleClass="btn w100 " value="Add Allocation" action="#{addNewAllocationRequest.openAddNewAllocation()}"/>
+                    <h:commandButton styleClass="btn w100 " value="List All Alloctions" action="#{listAllAllocationRequest.openListAllAllocation()}"/>                       
+                    <h:commandButton styleClass="btn w100 " value="Search Allocation" action="#{searchAllocationRequest.openSearchAllocation()}"/>
+                </h:panelGroup>
+
+            </h:panelGroup>
+        </h:form>
+    </ui:composition>
+</html>

@@ -1,0 +1,119 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      >
+    <h:body>
+        <ui:composition template="/layouts/layoutPage.xhtml">
+            <ui:define name="titleaPage">Search a Allocation</ui:define>
+            <ui:define name="navigate">
+                Search a Allocation
+            </ui:define>
+
+            <ui:define name="content">   
+
+                <h:form style="margin-bottom:25px; margin-top: 25px;" styleClass="w-100">
+                    <h:panelGroup layout="block" styleClass="q-row">
+
+                        <h:panelGroup layout="block" style="display: block" styleClass="w70">
+                            <h:inputText id="textInput" 
+                                         p:placeholder="Enter allocation ID..." 
+                                         required="true"
+                                         requiredMessage="Please enter allocation ID"
+                                         validatorMessage = "The entered ID is not correct format. Example: [digits]-[digits]"
+                                         styleClass="textBox" 
+                                         value="#{searchAllocationRequest.keyWord}">
+                                <f:validateRegex pattern="^[1-9]*-[1-9]*$"/>
+                            </h:inputText>
+                        </h:panelGroup>
+                        <h:panelGroup layout="block" style="display: block" styleClass="w10 rightPr">
+                            <h:commandButton styleClass= "searchButton" style="font-weight: bolder;" value="Search" >
+                                <f:ajax 
+                                    event="click" 
+                                    execute="textInput" 
+                                    listener="#{searchAllocationRequest.findAllcation()}" 
+                                    render=":form:tableResult msg me"/>
+                            </h:commandButton>    
+                        </h:panelGroup>
+                    </h:panelGroup>  
+                </h:form >
+                <h:message id="me" for="textInput" class="MSG_Contener errorMSG_Color"/>
+                <h:outputText style="#{SessionController.showMSG ? 'display: block;' : 'display: none;'} "  id="msg" value="#{SessionController.message}"
+                              styleClass="#{ SessionController.succsessfully ? 'MSG_Contener cussess_color':'MSG_Contener errorMSG_Color'}"/>
+
+                <h:form id="form">
+                    <h:panelGroup layout="block" id="tableResult" styleClass="scrallBarVertical">
+                        <h:dataTable   styleClass="q-table " 
+                                       headerClass="q-column"  
+
+                                       rowClasses="odd, even"
+                                       value="#{SessionController.searchResultListAllocations}"
+                                       var="al">
+                            <h:column >
+                                <f:facet  name="header">
+                                    <h:outputText  value="ID"/>
+                                </f:facet>
+                                <h:outputText value="#{al.manager.id}-#{al.property.id}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Manager Name"/>
+                                </f:facet>
+                                <h:outputLabel 
+                                    for="btnViewManager"
+                                    styleClass="linkButton linkButtonGreen"
+                                    value="#{al.manager.firstName} #{al.manager.lastName}"/>                               
+                                <h:commandButton 
+                                    id="btnViewManager" 
+                                    style="display: none"  
+                                    action="#{listAllAllocationRequest.viewManagerDetails(al.manager)}"/>
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Property Details"/>
+                                </f:facet>
+                                <h:outputLabel 
+                                    for="btnViewProperty"
+                                    styleClass="linkButton linkButtonYallow"
+                                    value="#{al.property.address}"/>
+                                <h:commandButton 
+                                    id="btnViewProperty" 
+                                    style="display: none"  
+                                    action="#{listAllAllocationRequest.viewPropertyDetails(al.property.id)}"/>
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Allocated Time"/>
+                                </f:facet>
+                                <h:outputText value="#{al.allocatedDate}"/>
+                            </h:column> 
+
+
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Actions"/>
+                                </f:facet>                            
+
+                                <h:outputLabel for="btnDelete_New" style="margin: 0;" styleClass="deleteButton" value="Delete"/>
+                                <h:commandButton 
+                                    id="btnDelete_New" 
+                                    style="display: none" 
+                                    action="#{listAllAllocationRequest.deleteAllocation(al,3)}"
+                                    />
+
+                            </h:column>
+
+                        </h:dataTable>
+
+                    </h:panelGroup>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:cpPro="http://xmlns.jcp.org/jsf/composite/compositeComponent"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:body>
+
+        <ui:composition template="/layouts/layoutPage.xhtml">
+            <ui:define name="titleaPage">Add New Sale Property</ui:define>
+            <ui:define name="navigate">
+                New Sale Property
+            </ui:define>
+            <ui:define name="content">   
+
+                <h:form>
+                    <h:outputLabel value="Sale Price (AUD)"/>
+                    <h:message for="textSalePrice" styleClass="MSG_Contener errorMSG_Color"/>
+                    <h:inputText id="textSalePrice" 
+                                 required="true" 
+                                 requiredMessage="Please enter sale price" 
+                                 styleClass="textBox" 
+                                 p:placeHolder="Price" 
+                                 validatorMessage="Entered sale price is not correct format"
+                                 converterMessage="Please enter digits only."
+                                 value="#{addNewSalePropertyRequest.newSale.salePrice}"
+                                 >
+                        <f:validateDoubleRange minimum="0.00"/>
+                    </h:inputText>  
+                    <cpPro:compositeProperty property="#{addNewSalePropertyRequest.newSale}"/>
+
+                    <h:panelGroup layout="block" styleClass="center" style="margin-top: 25px" >
+                        <h:commandButton  styleClass="actionButton " style="width: 50%"  value="Add a New Sale Property" action="#{addNewSalePropertyRequest.insertNewSaleProperty()}"/>    
+                    </h:panelGroup>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+
+    </h:body>
+</html>
+

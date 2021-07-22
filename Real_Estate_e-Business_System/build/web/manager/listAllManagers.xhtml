@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+   
+    
+    <h:body>
+        <ui:composition template="/layouts/layoutPage.xhtml">
+            <ui:define name="titleaPage">List All Managers</ui:define>
+            <ui:define name="navigate">
+                List Of All Managers
+            </ui:define>
+            <ui:define name="content">                 
+
+                <h:panelGroup layout="block" styleClass="scrallBarVertical">
+                    <h:form>
+                        <h:dataTable  styleClass="q-table " 
+                                      headerClass="q-column"  
+
+                                      rowClasses="odd, even"
+                                      value="#{listAllManagersRequest.listPropertyManager}"
+                                      var="mng">
+                            <h:column >
+                                <f:facet  name="header">
+                                    <h:outputText  value="ID"/>
+                                </f:facet>
+                                <h:outputText value="#{mng.id}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Name"/>
+                                </f:facet>
+                                <h:outputText value="#{mng.firstName} #{mng.lastName}"/>
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Phone Number"/>
+                                </f:facet>
+                                <h:outputText value="#{mng.phoneNumber}"/>
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Email"/>
+                                </f:facet>
+                                <h:outputText value="#{mng.email}"/>
+                            </h:column>
+
+
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Actions"/>
+                                </f:facet>
+                                <h:outputLabel for="btnView" style="margin: 0;" styleClass="actionButton" value="View"/>
+                                <h:commandButton id="btnView" style="display: none"  action="#{listAllManagersRequest.viewManagerDetail(mng)}"/>
+                            </h:column>
+
+                        </h:dataTable>
+                    </h:form>
+                </h:panelGroup>
+                
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

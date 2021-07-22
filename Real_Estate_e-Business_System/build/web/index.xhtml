@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:body>  
+
+        <ui:composition template="/layouts/layoutPage.xhtml">
+            <ui:define name="titleaPage">Home (Overview)</ui:define>
+            <ui:define name="navigate">
+                Home (Overview)
+            </ui:define>
+            <ui:define name="content">  
+
+                <h:panelGroup layout="block" styleClass="q-row">
+                    <h:panelGroup layout="block" style="display: block" styleClass="w50">
+                        <h:outputLabel value="Total Property"/>
+                        <h:outputText styleClass="textBox" value="#{indexController.totalProperty}"/>
+                    </h:panelGroup>
+                    <h:panelGroup layout="block" style="display: block" styleClass="w50 rightPr">
+
+                        <h:outputLabel value="Total Allocated Property"/>
+                        <h:outputText styleClass="textBox" value="#{indexController.totalAllocatedProperty}"/>
+
+                    </h:panelGroup>
+                </h:panelGroup>
+
+
+
+                <h:panelGroup layout="block" styleClass="q-row">
+                    <h:panelGroup layout="block" style="display: block" styleClass="w50">
+                        <h:outputLabel value="Property on Sale"/>
+                        <h:outputText styleClass="textBox" value="#{indexController.totalSale}"/>
+                    </h:panelGroup>
+                    <h:panelGroup layout="block" style="display: block" styleClass="w50 rightPr">
+                        <h:outputLabel value="Total Allocated Sale Property"/>
+                        <h:outputText styleClass="textBox" value="#{indexController.totalAllocatedSale}"/>
+                    </h:panelGroup>
+                </h:panelGroup>
+
+
+
+                <h:panelGroup layout="block" styleClass="q-row">
+                    <h:panelGroup layout="block" style="display: block" styleClass="w50">
+                        <h:outputLabel value="Property on Rent"/>
+                        <h:outputText styleClass="textBox" value="#{indexController.totalRent}"/>
+                    </h:panelGroup>
+                    <h:panelGroup layout="block" style="display: block" styleClass="w50 rightPr">
+                        <h:outputLabel value="Total Allocated Rent Property"/>
+                        <h:outputText styleClass="textBox" value="#{indexController.totalAllcatedRent}"/>
+                    </h:panelGroup>
+                </h:panelGroup>
+
+
+
+                <br/><br/>
+                <h:panelGroup layout="block" >
+                    <h5 style="margin-bottom: 0px; margin-top: 20px;">
+                        <span style="color: white; border-radius: 5px; background: #28a745;padding: 5px;">
+                            Manager (Overview)
+                        </span>
+                    </h5>
+                    <hr style="margin-top: 3px; background: #28a745; margin-bottom: 15px; padding: 2px "/>
+                </h:panelGroup>
+
+                <h:panelGroup layout="block" styleClass="q-row">
+                    <h:panelGroup layout="block" style="display: block" styleClass="w50">
+                        <h:outputLabel value="Total Manager"/>
+                        <h:outputText styleClass="textBox" value="#{indexController.totalManager}"/>
+                    </h:panelGroup>
+                    <h:panelGroup layout="block" style="display: block" styleClass="w50 rightPr">
+
+                        <h:outputLabel value="Total Allocated Manager"/>
+                        <h:outputText styleClass="textBox" value="#{indexController.totalAllocatedManager}"/>
+                    </h:panelGroup>
+                </h:panelGroup>
+
+            </ui:define>
+
+        </ui:composition>
+    </h:body>
+</html>
+
