@@ -1,0 +1,2 @@
+asadmin create-jdbc-connection-pool --datasourceclassname=org.apache.derby.jdbc.ClientDataSource --restype=javax.sql.DataSource --property portNumber=1527:password=APP:user=APP:serverName=localhost:databaseName=12118217_12123838_Database:connectionAttributes=;create\=true 12118217_12123838_ConnectionPool
+pause

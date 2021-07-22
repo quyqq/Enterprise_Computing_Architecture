@@ -1,0 +1,2 @@
+asadmin ping-connection-pool 12118217_12123838_ConnectionPool
+pause
